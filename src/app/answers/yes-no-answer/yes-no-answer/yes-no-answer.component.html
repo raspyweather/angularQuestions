@@ -1,0 +1,7 @@
+<h4>Select the correct answer:</h4>
+<div>
+  <div focusing class="btn" tabindex="0" [ngClass]="{'btn-danger':yesAnswered===false, 'btn-outline-danger':yesAnswered!==false}"
+    (click)="yesAnswered=false;">No</div>
+  <div focusing class="btn" tabindex="0" [ngClass]="{'btn-success':yesAnswered===true, 'btn-outline-success':yesAnswered!==true}"
+    (click)="yesAnswered=true;">Yes</div>
+</div>

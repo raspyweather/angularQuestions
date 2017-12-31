@@ -1,0 +1,30 @@
+<h4>Enter the answer and click add:</h4>
+<span *ngFor="let answer of answers; let i = index;">
+  <div class="d-flex flex-row">
+    <div tabindex="0" focusing class="btn m-1" [ngClass]="{'btn-success':answer.right, 'btn-danger':!answer.right}" (click)="toggleAnswerRight(answer)">
+      <i [ngClass]="{'fa-check':answer.right, 'fa-times':!answer.right}" class="fa" aria-hidden="true"></i>
+    </div>
+    <input [attr.id]="'checkAnswerInput'+i" type="text" class="form-control m-1" value="{{answer.text}}" (keyup)="setCheckAnswerText(('checkAnswerInput'+i),answer)"
+      focusing />
+    <div tabindex="0" focusing class="btn btn-danger m-1" (click)="removeAnswer(answer)">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </div>
+  </div>
+  <span *ngIf="answer.text && answer.text.trim() && getFocused('checkAnswerInput'+i).focused">
+    <h5>Preview:</h5>
+    <div class="alert alert-success" [MathJax]='answer.text'></div>
+  </span>
+</span>
+
+<div class="d-flex flex-row">
+  <div focusing class="btn m-1" [ngClass]="{'btn-success':nextAnswer.right, 'btn-danger':!nextAnswer.right}" (click)="nextAnswer.right=!nextAnswer.right;">
+    <i [ngClass]="{'fa-check':nextAnswer.right, 'fa-times':!nextAnswer.right}" class="fa" aria-hidden="true"></i>
+  </div>
+  <input #chAnswerInput id="checkAnswerInput" type="text" value="{{nextAnswer.text}}" class="form-control m-1" (keyup)="setCheckAnswerText('checkAnswerInput',nextAnswer)"
+    focusing />
+  <div focusing class="btn btn-primary m-1" (click)="addCheckAnswer('checkAnswerInput')">Add</div>
+</div>
+<span *ngIf="nextAnswer.text && nextAnswer.text.trim() && chAnswerInput.focused">
+  <h5>Preview:</h5>
+  <div class="alert alert-success" [MathJax]='nextAnswer.text'></div>
+</span>

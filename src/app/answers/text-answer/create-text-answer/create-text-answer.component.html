@@ -1,0 +1,29 @@
+<h4>Select case sensitivity:</h4>
+<div>
+  <div focusing class="btn" [ngClass]="{'btn-danger':caseSensitive==false, 'btn-outline-danger':caseSensitive==true}" (click)="caseSensitive=false;">Ignore Case</div>
+  <div focusing class="btn" [ngClass]="{'btn-success':caseSensitive==true, 'btn-outline-success':caseSensitive==false}" (click)="caseSensitive=true;">Casesensitive</div>
+</div>
+<h4>Enter the answer and click add:</h4>
+<span *ngFor="let answer of answers; let i = index;">
+  <div class="d-flex flex-row">
+    <input [attr.id]="'textAnswerInput'+i" type="text" class="form-control m-1" value="{{answer}}" (keyup)="setTextAnswer('textAnswerInput'+i,i)"
+      focusing />
+    <div tabindex="0" focusing class="btn btn-danger m-1" (click)="removeAnswer(answer)">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </div>
+  </div>
+  <span *ngIf="answer && answer.trim() && getFocused('textAnswerInput'+i).focused">
+    <h5>Preview:</h5>
+    <div class="alert alert-success" [MathJax]='answer'></div>
+  </span>
+</span>
+
+<div class="d-flex flex-row">
+  <input #txtAnswerInput id="txtAnswerInput" type="text" value="{{nextAnswer}}" class="form-control m-1" (keyup)="setTextAnswer('txtAnswerInput')"
+    focusing />
+  <div focusing class="btn btn-primary m-1" (click)="addTextAnswer('txtAnswerInput')">Add</div>
+</div>
+<span *ngIf="nextAnswer && nextAnswer.trim() && txtAnswerInput.focused">
+  <h5>Preview:</h5>
+  <div class="alert alert-success" [MathJax]='nextAnswer'></div>
+</span>

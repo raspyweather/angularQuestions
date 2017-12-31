@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="col">
+    <h2>Question</h2>
+    <textarea tabindex="0" class="form-control" (keyup)="questionTxt=qTxtInput.value" focusing #qTxtInput></textarea>
+    <span *ngIf="questionTxt && questionTxt.trim() && qTxtInput.focused">
+      <h5>Preview:</h5>
+      <div class="alert alert-success" [MathJax]='questionTxt'></div>
+    </span>
+
+    <h2>Explanation</h2>
+    <textarea tabindex="0" class="form-control" (keyup)="question.ExplanationText=explainTxtInput.value" focusing #explainTxtInput></textarea>
+    <span *ngIf="question.ExplanationText && question.ExplanationText.trim() && explainTxtInput.focused">
+      <h5>Preview:</h5>
+      <div class="alert alert-success" [MathJax]='explainTxtInput.value'></div>
+    </span>
+  </div>
+
+  <create-answer></create-answer>
+ <!--
+  <div>
+    <h2>Finish question</h2>
+    <div focusing tabindex="0" class="btn btn-success" [ngClass]="{'disabled':!getFinishable()}">New Question</div>
+  </div>
+-->

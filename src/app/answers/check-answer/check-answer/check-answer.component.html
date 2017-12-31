@@ -1,0 +1,10 @@
+<div *ngFor="let aw of answer.value;let i=index;">
+  <div class="d-flex flex-row">
+    <div tabindex="0" focusing class="btn m-1" [ngClass]="{'btn-success':answer.right, 'btn-danger':!answer.right}" (click)="toggleAnswerRight(answer)">
+      <i [ngClass]="{'fa-check':answer.right, 'fa-times':!answer.right}" class="fa" aria-hidden="true"></i>
+    </div>
+    <div>
+      {{aw.text}}
+    </div>
+  </div>
+</div>

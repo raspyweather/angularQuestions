@@ -1,0 +1,12 @@
+<div>
+    <h2>Select the type of question:</h2>
+    <div class="d-flex flex-row">
+      <div *ngFor="let typ of typeMapping; let i = index" focusing tabindex="0" class="btn m-1" [ngClass]="{'btn-success':selectedIndex==i,'btn-primary':selectedIndex!=i}"
+        (click)="selectedIndex=i">{{typ.type.description}}</div>
+    </div>
+  </div>
+  
+<createyesno-answer [ngClass]="{'collapse':selectedIndex!=0}" #yesnoAnswerComponent></createyesno-answer>
+<createcheck-answer [ngClass]="{'collapse':selectedIndex!=1}" #checkAnswerComponent></createcheck-answer>
+<createtext-answer [ngClass]="{'collapse':selectedIndex!=2}" #textAnswerComponent></createtext-answer>
+<div *ngIf="getFinishMessage()" class="alert alert-danger">{{getFinishMessage()}}</div>
