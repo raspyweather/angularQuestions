@@ -11,7 +11,7 @@ import { answerComponent } from "../answerComponent";
 
 import { Answer } from 'app/answers/answer';
 @Component({
-  selector: 'app-view-answer',
+  selector: 'view-answer',
   templateUrl: './view-answer.component.html',
   styleUrls: ['./view-answer.component.css']
 })
@@ -25,30 +25,32 @@ export class ViewAnswerComponent implements OnInit, answerComponent {
   @Input()
   set Answer(aw: Answer) {
     this.answer = aw;
+    if (this.checkAnswerComponent && this.textAnswerComponent && this.yesnoAnswerComponent)
+      console.log(this.isYesNoAnswer, this.isCheckAnswer, this.isTextAnswer);
   }
 
   @ViewChild(CheckAnswerComponent)
-  private CheckAnswerComponent: CheckAnswerComponent;
+  private checkAnswerComponent: CheckAnswerComponent;
   @ViewChild(YesNoAnswerComponent)
-  private YesNoAnswerComponent: YesNoAnswerComponent;
+  private yesnoAnswerComponent: YesNoAnswerComponent;
   @ViewChild(TextAnswerComponent)
-  private TextAnswerComponent: TextAnswerComponent;
+  private textAnswerComponent: TextAnswerComponent;
 
   public get isAnsweredCorrectly(): boolean {
-    return this.isYesNoAnswer && this.YesNoAnswerComponent.isAnsweredCorrectly ||
-      this.isTextAnswer && this.TextAnswerComponent.isAnsweredCorrectly ||
-      this.isCheckAnswer && this.CheckAnswerComponent.isAnsweredCorrectly;
+    return this.isYesNoAnswer && this.yesnoAnswerComponent.isAnsweredCorrectly ||
+      this.isTextAnswer && this.textAnswerComponent.isAnsweredCorrectly ||
+      this.isCheckAnswer && this.checkAnswerComponent.isAnsweredCorrectly;
 
   }
 
-  public isYesNoAnswer(): boolean {
-    return this.answer.constructor.name == yesnoAnswer.name;
+  public get isYesNoAnswer(): boolean {
+    return this.answer.constructor.name === yesnoAnswer.name;
   }
-  public isCheckAnswer(): boolean {
-    return this.answer.constructor.name == CheckAnswer.name;
+  public get isCheckAnswer(): boolean {
+    return this.answer.constructor.name === CheckAnswer.name;
   }
-  public isTextAnswer(): boolean {
-    return this.answer.constructor.name == TextAnswer.name;
+  public get isTextAnswer(): boolean {
+    return this.answer.constructor.name === TextAnswer.name;
   }
 
 }

@@ -1,3 +1,8 @@
-<check-answer *ngIf="isCheckAnswer" [Answer]=answer #checkAnswerComponent></check-answer>
-<yes-no-answer *ngIf="isYesNoAnswer" [Answer]=answer #yesnoAnswerComponent></yes-no-answer>
-<text-answer *ngIf="isTextAnswer" [Answer]=answer #textAnswerComponent></text-answer>
+
+<span *ngIf="answer">
+<check-answer *ngIf="isCheckAnswer" [Answer]="answer" ></check-answer>
+<yes-no-answer *ngIf="isYesNoAnswer" [Answer]="answer" ></yes-no-answer>
+<text-answer *ngIf="isTextAnswer" [Answer]="answer" ></text-answer>
+</span>
+<h2 *ngIf="!answer">answer not set!</h2>
+<h3>{{answer.constructor.name}}</h3>
