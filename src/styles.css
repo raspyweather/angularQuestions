@@ -1,1 +1,512 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:#fff;
+}
+
+.loader {
+    position: absolute;
+    width: 40vh;
+    height: 40vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background:rgba(128,128,128,0.5);
+}
+
+
+.loaderTitle {
+    text-align: center;
+    margin: 5px;
+}
+
+.heading {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
+    font-stretch: expanded;
+}
+
+.rotateBox {
+    position: absolute;
+    background: #f00;
+    border-radius: 4000px;
+    width: 20vh;
+    height: 20vh;
+    margin: auto;
+    z-index: 1;
+}
+
+.rotateBox_inner {
+    width: 10px;
+    height: 100%;
+    background: #0f0;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%) skewX(10deg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.piece {
+    width: 50%;
+    height: 50%;
+    border-radius: 0 100% 0 0;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    background: #f00;
+    transform: scale(1.05);
+}
+
+.piece + .piece {
+    background: #00f;
+    transform: rotateZ(30deg) scale(1.05);
+    transform-origin: 0% 100%;
+}
+
+.topBar {
+    position:fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    width:100vw;
+    height: 10vh;
+    transition: all linear 1s;
+    background-color: #05104d;
+    display: flex;
+    align-items: center;
+}
+.topBarEntry {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition-timing-function:ease-in-out;
+    transition-property:all;
+        transition-duration: 0.5s;
+    cursor: pointer;
+    color:#fff;
+}
+.topBarEntry:hover{
+    color:#0f0;
+    transition-duration: 0.2s;
+}
+.sliderBox {
+    width: 100vw;
+    height: 30vh;
+    background: #000;
+}
+
+#rotator {
+    position: absolute;
+    margin: 10%;
+    background: #fff;
+    border-radius: 200px;
+    z-index: 999;
+    height: 80%;
+    width: 80%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.Img {
+    margin: auto;
+    width: 40vw;
+    height: 40vh;
+    padding: 10px;
+    box-shadow: #000 1px 10px 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-shadow: 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black;
+    color: #fff;
+}
+
+.ImgContainer {
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.checkBox {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: -3px;
+    *overflow: hidden;
+    margin-right: 10px;
+}
+
+.checkBoxLabel {
+    /*width:100%;*/
+    display: block;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    text-indent: -15px;
+    border-bottom: 1px solid black;
+}
+
+.checkBox, .checkBoxLabel {
+    transition: background-color 0.33s linear;
+    vertical-align: middle;
+}
+
+.checkBox:hover, .checkBoxLabel:hover {
+    background-color: #06204d;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+.scrollHidden{
+    max-height: 0px !important;
+}
+.mainBox{
+    top:10vh;
+    margin-top:10vh;
+}
+.inlineElement{
+    position: relative;
+    width: 99%;
+}
+.button {
+    float: right;
+    background: rgba(128,0,128, 0.2);
+    color: #fff;
+    border: none;
+    margin: 5px;
+    padding: 3px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #00d;
+}
+
+.button:active {
+    background: #0f0;
+}
+
+.checkboxWrapper {
+    border-radius: 10px;
+    background: #05104d;
+    padding: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+}
+
+.inputWrapper {
+    background: #05104d;
+    border-radius: 20px;
+    margin:5px;
+    padding:10px;
+    display: inline-block;
+    float: left;
+    min-width: 21ch;
+    color:white;
+}
+    .fixedInputWrapper {
+    position: fixed;
+    top: 12.5vh;
+    z-index: 1;
+    left: 2vw;
+}
+.inputDescription{
+    font-weight:bold;
+}
+.invalidInput{
+    border:#ff0000 1px solid;
+    box-shadow: #ff0000 1px 1px 1px;
+}
+.elementWrapper {
+    display: inline-block;
+    position: relative;
+    margin:5px;
+}
+canvas{
+    margin:auto;
+    display: flex;
+}
+.collapseBox{
+    transition:all 0.2s linear;
+    overflow:hidden;
+    margin: 5px;
+    max-height: 99999px;
+}
+
+.modalsWrapper{
+     width:20vw;
+background:#00bb0a;
+min-width: 200px;
+}
+.wrappingBox{
+    padding: 10px 10px 0px 10px;
+}
+.modalsWrapper{
+     width:20vw;
+background:#00bb0a;
+min-width: 200px;
+}
+.wrappingBox{
+    padding: 10px 10px 0px 10px;
+}
+.noselect {
+                -webkit-touch-callout: none;
+            /* iOS Safari */
+            -webkit-user-select: none;
+            /* Safari */
+            -khtml-user-select: none;
+            /* Konqueror HTML */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+        }
+        
+        .datePickerWrapperBox {
+            position: relative;
+        }
+        
+        .datePickerYearRow {
+            border-top: 2px solid #0ff;
+            background: rgba(0,0,255,0.5);
+            width: 100%;
+            height: 20%;
+            display: flex;
+        }
+        
+        .datePickerYearButton {
+            width: 20%;
+            background: rgba(0,0,255,0.5);
+            height: 100%;
+            position: relative;
+            display: flex;
+            cursor: pointer;
+        }
+        
+        .datePickerYearButtonDisplay {
+            height: 16pt;
+            font-size: 16pt;
+            line-height: 14pt;
+            margin: auto;
+            font-weight: 900;
+        }
+        
+        .datePickerYearDisplay {
+            width: 80%;
+            justify-content: center;
+            align-self: center;
+            display: flex;
+        }
+        
+        .datePickerMonthButton {
+            height: 100%;
+            width: 10%;
+            padding:2px;
+            background: rgba(0,255,255,0.25);
+            position: relative;
+        }
+        
+        .datePickerMonthDisplay {
+            width: 100%;
+            align-items: center;            
+            background:rgba(0,0,255,0.25);
+            top: 0;
+            height: 10%;
+            border-top: #00ffff 2px solid;
+            border-bottom: #00ffff 2px solid;
+        }
+        
+       .datePickerMonthBox {
+    width: 80%;
+    background: rgba(0,0,255,0.2);
+    border-bottom: 1px #00f solid;
+}
+        .datePickerBox {
+            z-index: 1;
+            position:absolute;
+            width:300px;
+            height: 300px;
+            top:80%;
+            left:5%;
+        }
+        
+        .datePickerMonthRow {
+            position: relative;
+            height: 70%;
+            display: flex;
+            border-bottom: 2px solid #0ff;
+        }
+        
+        .datePickerMonthButtonDisplay {
+            height: 66pt;
+            font-size: 66pt;
+            line-height: 50pt;
+            cursor: pointer;
+        }
+        
+        .datePickerDayBox {
+            width: 12.9%;
+            height: 15.4%;
+            float: left;
+            margin: 1px;
+            cursor: pointer;
+        }
+        
+        .datePickerMonthButton {
+            height: 100%;
+            width: 10%;
+            font-size: 100%;
+            font-weight: 800;
+            display: flex;
+            cursor: pointer;
+        }
+        
+        .datePickerMonthButtonDisplay {
+            display: flex;
+            position: relative;
+            margin: auto;
+            font-size: 66pt;
+        }
+        
+        .datePickerDayBox:not(:empty):hover {
+            background: #4b4;
+            border-radius: 10px;
+        }
+        
+        .centerFlexBox {
+            align-content: center;
+            justify-content: center;
+            align-self: center;
+            position: relative;
+            display: flex;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .contentBox{
+            align-content: center;
+            justify-content: space-between;
+            flex-flow: row nowrap;
+            display: flex;
+        }
+        .sideBar{
+            display: flex;
+            align-items: center;
+            margin:5px; 
+     /*       overflow: hidden;
+            animation-duration: 1s;
+            animation-name: fromLeft;
+            animation-delay: 0s;
+            animation-timing-function:cubic-bezier(0.075, 0.82, 0.165, 1);*/
+        }
+        .sideBarWrapper {
+            margin: 0;
+            padding:0;
+            display: inline-grid;
+            position: relative;
+            vertical-align:middle;
+            justify-content: center;
+            text-align: center;
+}
+.sideBarEntry {
+    background: #004;
+    max-height: 2.8vh;
+    font-size: 2vh;
+    display: table;
+    justify-content: center;
+    text-align: center;
+}
+.sideBarEntry.notExisting {
+    color:#444;
+}
+
+.sideBarEntry.current {
+    font-size: 3vh;
+    padding: 4px;
+    width: 3vw;
+    color: #0f0;
+}
+.scrollbox {
+    display: flex;
+    justify-content:start;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow-y:auto;
+    width:100%;
+}
+.row{
+    min-height: 33vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.secondTopBar{
+    display: flex;
+    background: #003;
+}
+.item{
+    padding: 2px;
+    background: #003;
+}
+.cell{
+    display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+@keyframes dialog_down {
+    from {
+        top: -50%;
+    }
+
+    to {
+        top: 50%;
+    }
+}
+
+@keyframes dialog_up {
+    from {
+        top: 50%;
+    }
+
+    to {
+        top: -50%;
+    }
+}
+@keyframes fromLeft{
+    0%{
+       right:-20vw;
+    }
+    100%{
+       right:0vw;
+    }
+}
+
+@keyframes topBar_moveRight {
+    from {
+        right: 100vw;
+        left:-100vw;
+    }
+
+    to {
+        right: 0vw;
+        left:0vw;
+    }
+}
